@@ -63,7 +63,7 @@ poo/
 │   │   ├── Pagamento.java       # Estende Transacao
 │   │   └── CaixaEletronico.java
 │   └── DiagramaClasse.md        # Diagrama de classes (Mermaid), conforme enunciado
-│   # Sem classe Principal nesta versão — ver observação abaixo
+│  
 │
 └── petshop/
     ├── src/
