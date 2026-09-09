@@ -65,23 +65,24 @@ poo/
 │   └── DiagramaClasse.md        # Diagrama de classes (Mermaid), conforme enunciado
 │  
 │
-└── petshop/
+├── petshop/
+│   ├── src/
+│   │   ├── Pessoa.java          # Classe base (herança)
+│   │   ├── Dono.java            # Estende Pessoa
+│   │   ├── Vet.java             # Estende Pessoa
+│   │   ├── Animal.java
+│   │   ├── Doenca.java
+│   │   └── Principal.java       # Ponto de entrada (main) com demonstração
+│   ├── bin/                     # Classes compiladas (.class)
+│   └── DiagramaClasse.md        # Diagrama de classes (Mermaid)
+│
+│
+└── crud/
     ├── src/
-    │   ├── Pessoa.java          # Classe base (herança)
-    │   ├── Dono.java            # Estende Pessoa
-    │   ├── Vet.java             # Estende Pessoa
-    │   ├── Animal.java
-    │   ├── Doenca.java
-    │   └── Principal.java       # Ponto de entrada (main) com demonstração
-    ├── bin/                     # Classes compiladas (.class)
-    └── DiagramaClasse.md        # Diagrama de classes (Mermaid)
-
-crud/
-├── src/
-│   ├── Aluno.java               # Classe de modelo (sem herança)
-│   ├── GestaoAluno.java         # CRUD + menu interativo
-│   └── Principal.java           # Ponto de entrada (main)
-└── bin/                         # Classes compiladas (.class)
+    │   ├── Aluno.java               # Classe de modelo (sem herança)
+    │   ├── GestaoAluno.java         # CRUD + menu interativo
+    │   └── Principal.java           # Ponto de entrada (main)
+    └── bin/                         # Classes compiladas (.class)
 ```
 
 ### Descrição dos domínios
