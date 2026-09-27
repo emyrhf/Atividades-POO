@@ -28,7 +28,6 @@ Os quatro primeiros exercícios foram desenvolvidos em sequência, um por dia: *
 Este repositório reúne cinco exercícios independentes de fixação de POO em Java, cada um modelando um domínio de problema distinto para praticar um subconjunto específico de conceitos:
 
 | Exercício | Conceitos praticados |
-
 |---|---|
 | `aeroporto` | Herança (`Pessoa` → `Piloto`/`Passageiro`), sobrescrita de método (`@Override`), associação entre objetos, encapsulamento |
 | `banco` | Herança (`Transacao` → `Saque`/`Deposito`/`Pagamento`), modelagem de domínio conforme diagrama de classes fornecido em enunciado |
@@ -125,7 +124,6 @@ Os três exercícios orientados a herança/associação (`aeroporto`, `banco`, `
 ## Pré-requisitos e Dependências
 
 | Requisito | Especificação |
-
 |---|---|
 | JDK (Java Development Kit) | [inserir versão exata utilizada] |
 | Bibliotecas externas | Nenhuma — utiliza exclusivamente a biblioteca padrão do Java (`java.time.LocalDate`, usada em `banco`) |
