@@ -4,9 +4,9 @@
 ![Linguagem](https://img.shields.io/badge/Java-SE-orange?logo=java)
 ![Licença](https://img.shields.io/badge/licença-MIT-green)
 
-Repositório de exercícios práticos de **Programação Orientada a Objetos (POO) em Java**, composto por quatro exercícios independentes — aeroporto, banco, petshop e crud — cobrindo desde os fundamentos de herança e associação entre objetos até um exercício de CRUD completo com manipulação de coleção e persistência em memória.
+Repositório de exercícios práticos de **Programação Orientada a Objetos (POO) em Java**, composto por cinco exercícios independentes — aeroporto, banco, petshop, crud e fedora — cobrindo desde os fundamentos de herança e associação entre objetos até um exercício de CRUD completo com manipulação de coleção e persistência em memória, além de uma modelagem de hierarquia nobiliárquica com interfaces.
 
-Os três primeiros exercícios foram desenvolvidos em sequência, um por dia: **aeroporto** (05/09), **banco** (06/09) e **petshop** (07/09). O exercício **crud** foi adicionado posteriormente, com foco em um eixo de complexidade diferente dos demais: operações Create/Read/Update/Delete completas sobre uma coleção de objetos, incluindo parsing e validação de datas.
+Os quatro primeiros exercícios foram desenvolvidos em sequência, um por dia: **aeroporto** (05/09), **banco** (06/09), **petshop** (07/09) e **crud** (08/09). O exercício **fedora** foi incluído posteriormente, com foco em herança múltipla em nível conceitual por meio de interfaces e agregações entre classes do reino de Fedora.
 
 ---
 
@@ -25,14 +25,16 @@ Os três primeiros exercícios foram desenvolvidos em sequência, um por dia: **
 
 ## Contexto Acadêmico
 
-Este repositório reúne três exercícios independentes de fixação de POO em Java, cada um modelando um domínio de problema distinto para praticar um subconjunto específico de conceitos:
+Este repositório reúne cinco exercícios independentes de fixação de POO em Java, cada um modelando um domínio de problema distinto para praticar um subconjunto específico de conceitos:
 
 | Exercício | Conceitos praticados |
+
 |---|---|
 | `aeroporto` | Herança (`Pessoa` → `Piloto`/`Passageiro`), sobrescrita de método (`@Override`), associação entre objetos, encapsulamento |
 | `banco` | Herança (`Transacao` → `Saque`/`Deposito`/`Pagamento`), modelagem de domínio conforme diagrama de classes fornecido em enunciado |
 | `petshop` | Herança (`Pessoa` → `Dono`/`Vet`), associação bidirecional entre pessoa e animal, encapsulamento |
 | `crud` | Operações CRUD completas (criar, listar, atualizar, excluir) sobre um array de objetos; parsing e formatação de datas (`LocalDate`/`DateTimeFormatter`); menu interativo via terminal |
+| `fedora` | Hierarquia de classes do reino (`Nobre` → `Principe`/`Conde`/`Rainha`), interfaces (`Cavaleiro`, `Diplomata`, `Fiel`), agregação de objetos e modelagem em pacote `edu.nobreza` |
 
 ---
 
@@ -63,7 +65,6 @@ poo/
 │   │   ├── Pagamento.java       # Estende Transacao
 │   │   └── CaixaEletronico.java
 │   └── DiagramaClasse.md        # Diagrama de classes (Mermaid), conforme enunciado
-│  
 │
 ├── petshop/
 │   ├── src/
@@ -76,13 +77,29 @@ poo/
 │   ├── bin/                     # Classes compiladas (.class)
 │   └── DiagramaClasse.md        # Diagrama de classes (Mermaid)
 │
+├── crud/
+│   ├── src/
+│   │   ├── Aluno.java               # Classe de modelo (sem herança)
+│   │   ├── GestaoAluno.java         # CRUD + menu interativo
+│   │   └── Principal.java           # Ponto de entrada (main)
+│   └── bin/                         # Classes compiladas (.class)
 │
-└── crud/
-    ├── src/
-    │   ├── Aluno.java               # Classe de modelo (sem herança)
-    │   ├── GestaoAluno.java         # CRUD + menu interativo
-    │   └── Principal.java           # Ponto de entrada (main)
-    └── bin/                         # Classes compiladas (.class)
+└── fedora/
+    ├── edu/
+    │   └── nobreza/
+    │       ├── Nobre.java           # Classe base da hierarquia nobiliárquica
+    │       ├── Principe.java        # Herda de Nobre e implementa Cavaleiro
+    │       ├── Conde.java
+    │       ├── Rainha.java
+    │       ├── Soldado.java
+    │       ├── Conselheiro.java
+    │       ├── Bispo.java
+    │       ├── Padre.java
+    │       ├── Cavaleiro.java       # Interface
+    │       ├── Diplomata.java       # Interface
+    │       ├── Fiel.java            # Interface
+    │       └── ...
+    └── FedoraEnunciado.md          # Descrição do enunciado e diagrama UML
 ```
 
 ### Descrição dos domínios
@@ -95,9 +112,11 @@ poo/
 
 **`crud`** — Exercício de manipulação de coleção e operações CRUD, sem relação de herança. `GestaoAluno` mantém um array fixo de até 50 objetos `Aluno` e expõe métodos para criar, atualizar, excluir e exibir registros, todos localizando o aluno-alvo por busca linear pelo campo `ra` (RA/matrícula). `Principal` inicia um menu interativo em terminal (`GestaoAluno.menu()`) com as opções de criar, atualizar, exibir, remover e sair.
 
+**`fedora`** — Exercício de modelagem de hierarquia nobiliárquica em Java, com classes e interfaces em um mesmo pacote (`edu.nobreza`). A base `Nobre` define o comportamento comum de governar, enquanto `Principe`, `Conde` e `Rainha` representam especializações. `Principe` implementa `Cavaleiro`, `Rainha` implementa `Diplomata` e `Bispo` implementa `Fiel`, demonstrando a utilização de interfaces para representar papéis e contratos específicos dentro do reino.
+
 ### Diagramas
 
-Os três exercícios orientados a herança/associação (`aeroporto`, `banco`, `petshop`) incluem diagramas de classe em formato Mermaid (`DiagramaClasse.md`). Em `aeroporto` e `petshop`, os diagramas foram elaborados como material de apoio ao design da solução; em `banco`, o diagrama corresponde à transcrição do próprio enunciado do exercício, que especificava a estrutura de classes a ser implementada. `aeroporto` inclui adicionalmente um diagrama de memória Stack/Heap (`DiagramaStackHeap.md`), ilustrando a alocação dos objetos instanciados em `Principal`. O exercício `crud` não possui diagrama, dado seu foco em manipulação de coleção e não em relações entre classes.
+Os três exercícios orientados a herança/associação (`aeroporto`, `banco`, `petshop`) incluem diagramas de classe em formato Mermaid (`DiagramaClasse.md`). Em `aeroporto` e `petshop`, os diagramas foram elaborados como material de apoio ao design da solução; em `banco`, o diagrama corresponde à transcrição do próprio enunciado do exercício, que especificava a estrutura de classes a ser implementada. `aeroporto` inclui adicionalmente um diagrama de memória Stack/Heap (`DiagramaStackHeap.md`), ilustrando a alocação dos objetos instanciados em `Principal`. O exercício `crud` não possui diagrama, dado seu foco em manipulação de coleção e não em relações entre classes. O exercício `fedora` traz a descrição do enunciado em `FedoraEnunciado.md` com diagrama UML em Mermaid, servindo como referência para a hierarquia e as relações entre as classes e interfaces.
 
 > Os diagramas foram elaborados como material de apoio ao entendimento do design e podem apresentar pequenas divergências de nomenclatura de atributos em relação à versão final do código (ex.: nomes de campos ajustados durante a implementação). Em caso de divergência, o código-fonte é a referência correta.
 
@@ -106,6 +125,7 @@ Os três exercícios orientados a herança/associação (`aeroporto`, `banco`, `
 ## Pré-requisitos e Dependências
 
 | Requisito | Especificação |
+
 |---|---|
 | JDK (Java Development Kit) | [inserir versão exata utilizada] |
 | Bibliotecas externas | Nenhuma — utiliza exclusivamente a biblioteca padrão do Java (`java.time.LocalDate`, usada em `banco`) |
@@ -147,6 +167,14 @@ java -cp crud/bin Principal
 ```
 
 > Diferente dos demais exercícios, `crud` está no pacote padrão (sem `package` declarado), portanto a classe é referenciada diretamente como `Principal`, sem prefixo de pacote.
+
+### Fedora
+
+```bash
+javac -d fedora/bin fedora/edu/nobreza/*.java
+```
+
+> O exercício `fedora` foi desenvolvido conforme o enunciado em `FedoraEnunciado.md` e não possui `Principal` nem rotina de execução direta. O objetivo é modelar as classes e interfaces do reino em um mesmo pacote (`edu.nobreza`), validando a estrutura e os relacionamentos propostos no enunciado.
 
 ---
 
@@ -234,6 +262,10 @@ Data de nascimento: 2005-03-15
 
 > A data de nascimento é exibida no formato padrão de `LocalDate.toString()` (`aaaa-mm-dd`), diferente do formato de entrada (`dd/mm/aaaa`), pois a classe `Aluno` não sobrescreve a formatação de saída da data em `toString()`.
 
+### Fedora
+
+A modelagem segue estritamente o enunciado, sem `Principal` nem fluxo de execução em terminal.
+
 ---
 
 ## Metodologia e Decisões de Design
@@ -253,13 +285,16 @@ O enunciado deste exercício (reproduzido em `banco/DiagramaClasse.md`) delimita
 **5. Adaptação pontual de tipo: `Date` → `LocalDate`.**
 O diagrama do exercício `banco` especifica o tipo `Date` (`java.util.Date`) para os atributos e parâmetros de data. O código implementa `java.time.LocalDate` — a API de datas introduzida no Java 8 como substituta recomendada de `java.util.Date`, que é considerada legada (mutável, sem suporte nativo a fuso horário/imutabilidade). Essa é uma boa prática de implementação, ainda que represente uma pequena divergência literal em relação ao tipo indicado no diagrama.
 
-**6. Array de tamanho fixo como estrutura de armazenamento em `crud`.**
+**6. Uso de interfaces para modelar papéis específicos em `fedora`.**
+O domínio de Fedora introduz a ideia de contratos comportamentais encapsulados em interfaces: `Cavaleiro` define `duelar()`, `Diplomata` define `fazerDiplomacia()` e `Fiel` define `rezar()`. Isso permite que uma classe herde comportamento comum de `Nobre` e, ao mesmo tempo, assuma papéis específicos sem precisar herdar de múltiplas classes, refletindo o padrão de projeto de interfaces como mecanismo para representar múltiplas capacidades por composição de contrato.
+
+**7. Array de tamanho fixo como estrutura de armazenamento em `crud`.**
 `GestaoAluno` utiliza `Aluno[50]` como estrutura de dados, com um índice (`indice`) controlando a próxima posição livre. *Trade-off*: a capacidade é fixa em tempo de compilação — o cadastro de um 51º aluno lançaria `ArrayIndexOutOfBoundsException`, já que não há verificação de limite antes da escrita em `alunos[indice]`. Um `ArrayList<Aluno>`, sem tamanho pré-definido, eliminaria essa limitação; o array fixo aqui é consistente com um exercício introdutório focado na manipulação direta de arrays, e não com uma implementação voltada à robustez.
 
-**7. Busca linear por `ra` em todas as operações de `crud`.**
+**8. Busca linear por `ra` em todas as operações de `crud`.**
 `atualizar`, `excluir` e (implicitamente) a checagem de existência percorrem o array inteiro comparando `ra` a cada posição — complexidade O(n) por operação. Para o volume de dados de um exercício (até 50 registros), isso é irrelevante em termos de desempenho; a observação é válida como ponto de discussão conceitual (por que estruturas como `HashMap<String, Aluno>` reduziriam essa busca para O(1) em um cenário de maior escala).
 
-**8. Ausência de tratamento para entrada vazia no menu de `crud` (observação técnica).**
+**9. Ausência de tratamento para entrada vazia no menu de `crud` (observação técnica).**
 Em `GestaoAluno.menu()`, a linha `char letra = textoMaiusculo.charAt(0);` lança `StringIndexOutOfBoundsException` caso o usuário pressione Enter sem digitar nenhum caractere, pois `charAt(0)` é chamado sobre uma string vazia. Esse é o mesmo tipo de lacuna de validação de entrada já identificado e corrigido em outro projeto (TodoList) — aqui, permanece como ponto de melhoria não implementado nesta versão.
 
 ---
@@ -272,6 +307,7 @@ Em `GestaoAluno.menu()`, a linha `char letra = textoMaiusculo.charAt(0);` lança
 | 06/09/2026 | `banco` | Modelagem das entidades e relacionamentos de conta bancária e transações (`Saque`, `Deposito`, `Pagamento`, herança de `Transacao`) em conformidade com o diagrama de classes do enunciado; escopo do exercício não incluía lógica de negócio nem demonstração executável. |
 | 07/09/2026 | `petshop` | Modelagem de dono, veterinário, animal e doença; herança a partir de `Pessoa`; associação entre pessoa e animal; demonstração via `Principal`. |
 | 08/09/2026 | `crud` | Implementação de CRUD completo (criar, atualizar, excluir, exibir) sobre uma coleção de `Aluno`, com parsing de datas via `LocalDate`/`DateTimeFormatter` e menu interativo em terminal. |
+| 26/09/2026 | `fedora` | Modelagem do reino de Fedora em Java com hierarquia de nobres, interfaces de papel (`Cavaleiro`, `Diplomata`, `Fiel`) e agregação de `Conselheiro`, `Soldado` e `Bispo` em pacote `edu.nobreza`. |
 
 ---
 
